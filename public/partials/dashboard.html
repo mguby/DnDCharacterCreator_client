@@ -1,0 +1,23 @@
+<div class="list">
+	  <div class="row">
+          <div class="small-12 columns">
+          	<p>DASHBOARD</p>
+          	<p>{{message}}</p>
+            <form id="get" method="get" action="http://localhost:8080/api/dashboard">
+			  <button type="submit" class="button">Request</button>
+			</form>
+
+
+            <form method="get" action="http://localhost:8080/api/logout">
+			  <button type="submit" class="button">Logout</button>
+			</form>
+          </div>
+      </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("test");
+     $('#get').submit();
+});
+</script>

@@ -12,11 +12,12 @@ mp4Services.factory('CommonData', function(){
     }
 });
 
-mp4Services.factory('Llamas', function($http, $window) {
+mp4Services.factory('dashboard', function($http, $window) {
     return {
+        //params is the search parameters
         get : function() {
             var baseUrl = $window.sessionStorage.baseurl;
-            return $http.get(baseUrl+'/api/llamas');
-        }
+            return $http.get('http://localhost:8080/api/dashboard');   
+        },
     }
 });

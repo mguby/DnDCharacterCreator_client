@@ -23,7 +23,7 @@ mp4Controllers.controller('SecondController', ['$scope', 'CommonData' , function
 }]);
 
 
-mp4Controllers.controller('LlamaListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
+mp4Controllers.controller('homeController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
 
   Llamas.get().success(function(data){
     $scope.llamas = data;
@@ -40,5 +40,27 @@ mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function
     $scope.displayText = "URL set";
 
   };
+
+}]);
+
+mp4Controllers.controller('loginController', ['$scope' , '$window' , function($scope, $window) {
+  $scope.url = $window.sessionStorage.baseurl;
+}]);
+
+mp4Controllers.controller('registerController', ['$scope' , '$window' , function($scope, $window) {
+  $scope.url = $window.sessionStorage.baseurl;
+}]);
+
+mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dashboard', '$window' , function($scope, $http,  dashboard, $window) {
+
+  // dashboard.get().success(function(data){
+  //   console.log(data);
+  //   $scope.message = data.message;
+  // });
+  $http({
+     url: 'http://localhost:8080/api/dashboard', 
+     method: "GET",
+  });
+
 
 }]);

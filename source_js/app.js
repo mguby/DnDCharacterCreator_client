@@ -2,21 +2,21 @@ var app = angular.module('mp4', ['ngRoute', 'mp4Controllers', 'mp4Services']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/firstview', {
-    templateUrl: 'partials/firstview.html',
-    controller: 'FirstController'
+    when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'loginController'
   }).
-  when('/secondview', {
-    templateUrl: 'partials/secondview.html',
-    controller: 'SecondController'
+  when('/register', {
+    templateUrl: 'partials/register.html',
+    controller: 'registerController'
   }).
   when('/settings', {
     templateUrl: 'partials/settings.html',
     controller: 'SettingsController'
   }).
-  when('/llamalist', {
-    templateUrl: 'partials/llamalist.html',
-    controller: 'LlamaListController'
+  when('/dashboard', {
+    templateUrl: 'partials/dashboard.html',
+    controller: 'dashboardController'
   }).
   otherwise({
     redirectTo: '/settings'
