@@ -14,7 +14,7 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/settings.html',
     controller: 'SettingsController'
   }).
-  when('/dashboard', {
+  when('/dashboard/:userName', {
     templateUrl: 'partials/dashboard.html',
     controller: 'dashboardController'
   }).

@@ -21,3 +21,24 @@ mp4Services.factory('dashboard', function($http, $window) {
         },
     }
 });
+
+mp4Services.factory('login', function($http, $window) {
+    return {
+        get : function() {
+            var baseUrl = $window.sessionStorage.baseurl;
+            return $http.get(baseUrl+'/login');
+        },
+        delete : function(_id) {
+            var baseUrl = $window.sessionStorage.baseurl;
+            return $http.delete(baseUrl+'/login/'+_id);
+        },
+        post : function(taskData) {
+            var baseUrl = $window.sessionStorage.baseurl;
+            return $http.post(baseUrl+'/login', taskData);
+        },
+        put : function(taskData, putTo) {
+            var baseUrl = $window.sessionStorage.baseurl;
+            return $http.put(baseUrl+'/login/'+putTo, taskData);
+        }
+    }
+});

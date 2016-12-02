@@ -43,24 +43,33 @@ mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function
 
 }]);
 
-mp4Controllers.controller('loginController', ['$scope' , '$window' , function($scope, $window) {
+mp4Controllers.controller('loginController', ['$scope', '$http', 'login', '$window' , function($scope, $http,  login, $window) {
   $scope.url = $window.sessionStorage.baseurl;
+    $scope.SendData = function () {
+        console.log("called");
+        //create user data
+        var userData = {
+            username: $scope.username,
+            password: $scope.password,
+        };
+      
+      console.log(userData);
+      //post user
+        login.post(userData).success(function (data) {;           
+          console.log(data);
+        })
+        .error(function (data) {
+          console.log("failure");
+        });
+    };
+
 }]);
 
 mp4Controllers.controller('registerController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 }]);
 
-mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dashboard', '$window' , function($scope, $http,  dashboard, $window) {
-
-  // dashboard.get().success(function(data){
-  //   console.log(data);
-  //   $scope.message = data.message;
-  // });
-  $http({
-     url: 'http://localhost:8080/api/dashboard', 
-     method: "GET",
-  });
-
+mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dashboard', '$window' , '$routeParams', function($scope, $http,  dashboard, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
 
 }]);
