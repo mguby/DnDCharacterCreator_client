@@ -23,15 +23,6 @@ mp4Controllers.controller('SecondController', ['$scope', 'CommonData' , function
 }]);
 
 
-mp4Controllers.controller('homeController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
-
-  Llamas.get().success(function(data){
-    $scope.llamas = data;
-  });
-
-
-}]);
-
 mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 

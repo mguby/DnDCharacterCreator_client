@@ -1,0 +1,25 @@
+<div class="title text-center">
+
+    Race Selection
+
+</div>
+
+<p>
+
+<div class="raceFilter text-center" ng-controller="raceController">
+
+    Select Race:
+
+            <img ng-src="./data/image/http://www.d20pfsrd.com/_/rsrc/1474175136515/images/dagger.png?height=600&width=450.jpg" alt="">
+
+    <form class="columns small-6">
+
+            <input type="radio" ng-model="typeOfTask" name="typeOfTask" value="Human">Human<br>
+
+            <input type="radio" ng-model="typeOfTask" name="typeOfTask" value="Elf">Elf<br>
+
+            <input type="radio" ng-model="typeOfTask" name="typeOfTask" value="Orc">Orc<br>
+
+        </form>
+
+</div>
