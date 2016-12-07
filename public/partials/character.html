@@ -24,12 +24,13 @@
             <p> Your Character!</p>
 
             <img src="{{character.pictureURL}}">
-           	<p>Name: {{character.name}}</p>
-           	<p>Race: {{character.race.name}}</p>
-           	<p>Class: {{character.class.name}}</p>
+           	<p>Name: {{character.name}}</p> <a class="button">Edit</a>
+           	<p>Race: {{character.race.name}}</p> <a class="button">Edit</a>
+           	<p>Class: {{character.class.name}}</p> <a class="button">Edit</a>
            	<p>Level: {{character.level}}</p>
-           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p>
+           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p> <a class="button">Edit</a>
            	<div>
+							<a class="button">Edit</a>
            		<b>Feats:</b> 
 	           	<div ng-repeat="feat in character.feats">
 	           	<p>Name: {{feat.name}}</p>
@@ -39,6 +40,7 @@
 	           	</div>
            	</div>
            	<div>
+							<a class="button">Edit</a>
            		<b>Abilities:</b> 
 	           	<p>Strength: {{character.abilities.str}}</p>
 	           	<p>Dexterity: {{character.abilities.dex}}</p>
