@@ -65,6 +65,15 @@ mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_databa
 mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+    $scope.idx = 0;
+  }
+
 
     $scope.idx = 0;
     var searchParam = '/constants/races';
@@ -83,12 +92,29 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
       var race = JSON.stringify(race);
       $window.sessionStorage.race = race;
       $scope.idx = index;
+    };
+
+    $scope.saveData = function() {
+      character.race = JSON.parse($window.sessionStorage.race);
+      dnd_database.put(character._id, character).success(function(data) {
+        $window.sessionStorage.character = undefined;
+      })
     }
 
 }]);
 
 mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
+
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+    $scope.idx = 0;
+  }
+
     $scope.idx = 0;
     var searchParam = '/constants/classes';
     
@@ -107,20 +133,44 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
       $window.sessionStorage.class = selectedClass;
       $scope.idx = index;
     }
+
+    $scope.saveData = function() {
+      character.class=  JSON.parse($window.sessionStorage.class);
+      dnd_database.put(character._id, character).success(function(data) {
+        $window.sessionStorage.character = undefined;
+      })
+    }
 }]);
 
 mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
   $scope.indexes = {str: 0, dex: 1, con: 2, int: 3, wis: 4, cha: 5};
 
-  $scope.abilities = [
-    {name: "str", val: 0},
-    {name: "dex", val: 0},
-    {name: "con", val: 0},
-    {name: "int", val: 0},
-    {name: "wis", val: 0},
-    {name: "cha", val: 0}
-  ];
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+    $scope.abilities = [
+      {name: "str", val: character.abilities.str},
+      {name: "dex", val: character.abilities.dex},
+      {name: "con", val: character.abilities.con},
+      {name: "int", val: character.abilities.int},
+      {name: "wis", val: character.abilities.wis},
+      {name: "cha", val: character.abilities.cha}
+    ];
+  } else {
+    $scope.abilities = [
+      {name: "str", val: 0},
+      {name: "dex", val: 0},
+      {name: "con", val: 0},
+      {name: "int", val: 0},
+      {name: "wis", val: 0},
+      {name: "cha", val: 0}
+    ];
+  }
+
 
   $scope.randomize = function (stat) {
     stat.val = (Math.floor((Math.random() * 33) + 3));
@@ -151,12 +201,33 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
     console.log($window.sessionStorage.abilities);
   };
 
+  $scope.saveData = function () {
+    character.abilities = JSON.parse($window.sessionStorage.abilities);
+    dnd_database.put(character._id, character).success(function(data) {
+      $window.sessionStorage.character = undefined;
+    })
+  };
+
   $scope.saveJSON();
 }]);
 
 mp4Controllers.controller('inventoryController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
-  $scope.items = [{ name: "" }];
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+    $scope.items = [{ name: "" }];
+    if(character.inventory.length !== 0) {
+      character.inventory.forEach(function(item) {
+        $scope.items.push({ name: item });
+      })
+    }
+  } else {
+    $scope.items = [{ name: "" }];
+  }
 
   $scope.saveItems = function() {
     var json = [];
@@ -176,13 +247,30 @@ mp4Controllers.controller('inventoryController', ['$scope', '$http', 'dnd_databa
   $scope.deleteItem = function(item) {
     $scope.items.splice(item, 1);
     $scope.saveItems();
-  }
+  };
+
+  $scope.saveData = function () {
+    character.inventory = JSON.parse($window.sessionStorage.inventory);
+    dnd_database.put(character._id, character).success(function(data) {
+      $window.sessionStorage.character = undefined;
+    })
+  };
 }]);
 
 mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
- $scope.featArray = [];
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+    $scope.featArray = character.feats;
+  }
+  else {
+    $scope.featArray = [];
+  }
 
     $scope.idx = 0;
     var searchParam = '/constants/feats';
@@ -199,13 +287,20 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
       $scope.featArray.push($scope.feats[index]);
       var featArray = JSON.stringify($scope.featArray);
       $window.sessionStorage.feats = featArray;
-    }
+    };
 
     $scope.removeFeat = function(index) { 
       $scope.featArray.splice(index, 1);
       var featArray = JSON.stringify($scope.featArray);
       $window.sessionStorage.feats = featArray;
-    }
+    };
+
+  $scope.saveData = function() {
+    character.feats = JSON.parse($window.sessionStorage.feats);
+    dnd_database.put(character._id, character).success(function(data) {
+      $window.sessionStorage.character = undefined;
+    })
+  }
 }]);
 
 mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {

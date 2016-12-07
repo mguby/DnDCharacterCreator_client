@@ -19,7 +19,8 @@
 
 <div class="row">
     <div class="small-12 columns">
-      <a href="#/dashboard/{{userName}}/class" class="button">Prev</a>
-      <a href="#/dashboard/{{userName}}/feats" class="button">Next</a>
+			<a href="#/dashboard/{{userName}}/class" class="button" ng-hide="disableButtons()">Prev</a>
+			<a href="#/dashboard/{{userName}}/feats" class="button" ng-hide="disableButtons()">Next</a>
+			<a href="#/dashboard/{{userName}}" class="button" ng-hide="!disableButtons()" ng-click="saveData()">Save</a>
     </div>
 </div>

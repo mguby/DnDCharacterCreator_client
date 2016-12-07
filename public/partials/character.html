@@ -28,7 +28,7 @@
            	<p>Race: {{character.race.name}}</p> <a class="button" href="#/dashboard/{{userName}}/race">Edit</a>
            	<p>Class: {{character.class.name}}</p> <a class="button" href="#/dashboard/{{userName}}/class">Edit</a>
            	<p>Level: {{character.level}}</p>
-           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p> <a class="button" href="#/dashboard/{{userName}}/inventory">Edit</a>
+           	<p>Inventory: <span ng-repeat="item in character.inventory">{{item}}, </span></p> <a class="button" href="#/dashboard/{{userName}}/inventory">Edit</a>
            	<div>
 							<a class="button" href="#/dashboard/{{userName}}/feats">Edit</a>
            		<b>Feats:</b> 
