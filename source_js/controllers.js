@@ -4,6 +4,7 @@ var stringToJson = function(str) {
   return eval("(" + str + ")");
 };
 
+
 mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
@@ -243,9 +244,10 @@ mp4Controllers.controller('characterController', ['$scope', '$http', 'dnd_databa
 
     var searchParam = '/characters/' + $routeParams.characterID;
 
-    dnd_database.get(searchParam).success(function (data) {;  
+    dnd_database.get(searchParam).success(function (data) {
       console.log(data.data);         
-      $scope.character = data.data
+      $scope.character = data.data;
+      $window.sessionStorage.character = JSON.stringify($scope.character);
     })
     .error(function (data) {
       console.log("failure");
