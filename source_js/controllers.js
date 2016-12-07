@@ -1,5 +1,9 @@
 var mp4Controllers = angular.module('mp4Controllers', []);
 
+var stringToJson = function(str) {
+  return eval("(" + str + ")");
+};
+
 mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
