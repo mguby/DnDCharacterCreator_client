@@ -14,14 +14,6 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/settings.html',
     controller: 'SettingsController'
   }).
-  when('/races', {
-    templateUrl: 'partials/races.html',
-    controller: 'raceController'
-  }).
-  when('/abilities', {
-    templateUrl: 'partials/abilities.html',
-    controller: 'raceController'
-  }).
   when('/dashboard/:userName', {
     templateUrl: 'partials/dashboard.html',
     controller: 'dashboardController'
@@ -38,7 +30,11 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/feats.html',
     controller: 'featsController'
   }).
-  otherwise({
+  when('/dashboard/:userName/abilities', {
+    templateUrl: 'partials/abilities.html',
+    controller: 'raceController'
+  }).
+   otherwise({
     redirectTo: '/login'
   });
 }]);
