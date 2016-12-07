@@ -19,6 +19,10 @@ mp4Services.factory('dnd_database', function($http, $window) {
             var baseUrl = $window.sessionStorage.baseurl;
             return $http.get(baseUrl+params);   
         },
+        post : function(newCharacter) {
+            var baseUrl = $window.sessionStorage.baseurl;
+            return $http.post(baseUrl+'/characters', newCharacter);   
+        }
     }
 });
 

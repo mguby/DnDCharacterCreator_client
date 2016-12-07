@@ -71,6 +71,7 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
     
     dnd_database.get(searchParam).success(function (data) {;           
       $scope.races = data.data
+      $scope.selectRace(0);
     })
     .error(function (data) {
       console.log("failure");
@@ -78,21 +79,22 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
     
     //select class
     $scope.selectRace = function(index) {  
+      var race = $scope.races[index];
+      var race = JSON.stringify(race);
+      $window.sessionStorage.race = race;
       $scope.idx = index;
-      $window.sessionStorage.race = "test";
-      console.log($window.sessionStorage.race);
     }
+
 }]);
 
 mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
-
-
     $scope.idx = 0;
     var searchParam = '/constants/classes';
     
     dnd_database.get(searchParam).success(function (data) {;           
       $scope.classes = data.data
+      $scope.selectClass(0);
     })
     .error(function (data) {
       console.log("failure");
@@ -100,6 +102,9 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
     
     //select class
     $scope.selectClass = function(index) {  
+      var selectedClass = $scope.classes[index];
+      var selectedClass = JSON.stringify(selectedClass);
+      $window.sessionStorage.class = selectedClass;
       $scope.idx = index;
     }
 }]);
@@ -152,6 +157,7 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
 mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
+ $scope.featArray = [];
 
     $scope.idx = 0;
     var searchParam = '/constants/feats';
@@ -166,4 +172,34 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
     //select class
     $scope.selectFeat = function(index) {  
     }
+}]);
+
+mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+
+  var searchParam = '/characters';
+  console.log($window.sessionStorage.race);
+
+    $scope.sendData = function() { 
+          var newCharacter = {
+            name: $scope.name,
+            user: $scope.userName,
+            level: 1,
+            pictureURL: $scope.pictureURL,
+            class: JSON.parse($window.sessionStorage.class),
+            race: JSON.parse($window.sessionStorage.race),
+            abilities: JSON.parse($window.sessionStorage.abilities),
+            feats: [{                  "name": "acrobatic",         "description": "You are skilled at leaping, jumping, and flying.",         "benefit": "You get a +2 bonus on all Acrobatics and Fly skill checks. If you have 10 or more ranks in one of these skills, the bonus increases to +4 for that skill."     },     {        "name": "Dragonheart",         "description": "You are skilled at leaping, jumping, and flying.",         "benefit": "You gain a +1 bonus on all saving throws against auras, breath weapons, spell-like abilities, spells, supernatural abilities, and other special attacks of creatures with the dragon type."     }],
+            inventory: ["fewf", "feeee"],
+        }; 
+        console.log(newCharacter)
+        dnd_database.post(newCharacter).success(function (data) {;           
+          console.log(data.message);
+        })
+        .error(function (err, data) {
+          console.log(err);
+        });
+      
+    }
+
 }]);
