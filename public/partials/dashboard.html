@@ -1,9 +1,8 @@
   <div data-sticky-container>
-    <nav class="top-bar larger opacity" data-sticky style="width:100%">
+    <nav class="top-bar larger" data-sticky style="width:100%">
       <div class="top-bar-left">
-        <ul class="menu clear">
+        <ul class="dropdown menu" >
           <li><a>{{userName}}</a></li>
-          <li ><a href="">Characters</a></li>
           <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
         </ul>
       </div>
@@ -21,11 +20,24 @@
   </div>
 
 
-
+	  <div class="row">
+          <div class="small-12 columns">
+          Your Characters:
+          <button ng-repeat="(i,character) in characters" class="button small" ng-click="selectCharacter(i)">{{character.name}}</button>
+          </div>
+      </div>
 
 	  <div class="row">
           <div class="small-12 columns">
-            Hello <b>{{userName}}</b>, welcome to you dnd dashboard!
+            <b> Your Character!</b>
+
+            <img src="{{characters[idx].image}}">
+           	<p>Name: {{characters[idx].name}}</p>
+           	<p>Race: {{characters[idx].race.name}}</p>
+           	<p>Class: {{characters[idx].class.name}}</p>
+           	<p>Level: {{characters[idx].level}}</p>
+           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p>
+
           </div>
       </div>
 

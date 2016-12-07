@@ -40,13 +40,29 @@ mp4Controllers.controller('registerController', ['$scope' , '$window' , function
 mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http,  dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
+    $scope.idx = -1;  //dont show character for now
+    var searchParam = '/characters';
+
+    dnd_database.get(searchParam).success(function (data) {;  
+      console.log(data.data);         
+      $scope.characters = data.data
+    })
+    .error(function (data) {
+      console.log("failure");
+    });
+
+    //select character
+    $scope.selectCharacter = function(index) {  
+      $scope.idx = index;
+    }
+
 }]);
 
 mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
 
-    $scope.idx = 0; //idx used for class selection
+    $scope.idx = 0;
     var searchParam = '/constants/races';
     
     dnd_database.get(searchParam).success(function (data) {;           
@@ -66,7 +82,7 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
   $scope.userName = $routeParams.userName;
 
 
-    $scope.idx = 0; //idx used for class selection
+    $scope.idx = 0;
     var searchParam = '/constants/classes';
     
     dnd_database.get(searchParam).success(function (data) {;           
