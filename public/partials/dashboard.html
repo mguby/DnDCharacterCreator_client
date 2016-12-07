@@ -1,12 +1,31 @@
-<div class="list">
+  <div data-sticky-container>
+    <nav class="top-bar larger opacity" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="menu clear">
+          <li><a>{{userName}}</a></li>
+          <li ><a href="">Characters</a></li>
+          <li ><a href="#/dashboard/{{userName}}/class">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+          	<form method="get" action="http://localhost:8080/api/logout">
+      			  <button type="submit" class="button">Logout</button>
+      		</form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
 	  <div class="row">
           <div class="small-12 columns">
-          	<p>DASHBOARD</p>
             Hello <b>{{userName}}</b>, welcome to you dnd dashboard!
-
-            <form method="get" action="http://localhost:8080/api/logout">
-      			  <button type="submit" class="button">Logout</button>
-      			</form>
           </div>
       </div>
-</div>
+

@@ -12,12 +12,12 @@ mp4Services.factory('CommonData', function(){
     }
 });
 
-mp4Services.factory('dashboard', function($http, $window) {
+mp4Services.factory('dnd_database', function($http, $window) {
     return {
         //params is the search parameters
-        get : function() {
+        get : function(params) {
             var baseUrl = $window.sessionStorage.baseurl;
-            return $http.get('http://localhost:8080/api/dashboard');   
+            return $http.get(baseUrl+params);   
         },
     }
 });

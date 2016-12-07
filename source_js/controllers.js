@@ -1,28 +1,5 @@
 var mp4Controllers = angular.module('mp4Controllers', []);
 
-mp4Controllers.controller('FirstController', ['$scope', 'CommonData'  , function($scope, CommonData) {
-  $scope.data = "";
-   $scope.displayText = ""
-
-  $scope.setData = function(){
-    CommonData.setData($scope.data);
-    $scope.displayText = "Data set"
-
-  };
-
-}]);
-
-mp4Controllers.controller('SecondController', ['$scope', 'CommonData' , function($scope, CommonData) {
-  $scope.data = "";
-
-  $scope.getData = function(){
-    $scope.data = CommonData.getData();
-
-  };
-
-}]);
-
-
 mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
@@ -60,7 +37,28 @@ mp4Controllers.controller('registerController', ['$scope' , '$window' , function
   $scope.url = $window.sessionStorage.baseurl;
 }]);
 
-mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dashboard', '$window' , '$routeParams', function($scope, $http,  dashboard, $window, $routeParams) {
+mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http,  dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
+}]);
+
+mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+
+
+    $scope.idx = 5; //idx used for class selection
+    var searchParam = '/constants/classes';
+    
+    dnd_database.get(searchParam).success(function (data) {;           
+      console.log(data.data);
+      $scope.classes = data.data
+    })
+    .error(function (data) {
+      console.log("failure");
+    });
+    
+    //select class
+    $scope.selectClass = function(index) {  
+      $scope.idx = index;
+    }
 }]);
