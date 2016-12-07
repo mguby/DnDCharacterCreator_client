@@ -140,4 +140,6 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
     console.log($window.sessionStorage.abilities);
   };
 
+  $scope.saveJSON();
+
 }]);
