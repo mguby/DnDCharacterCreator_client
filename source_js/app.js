@@ -34,7 +34,15 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/class.html',
     controller: 'classController'
   }).
-  otherwise({
+  when('/dashboard/:userName/feats', {
+    templateUrl: 'partials/feats.html',
+    controller: 'featsController'
+  }).
+  when('/dashboard/:userName/abilities', {
+    templateUrl: 'partials/abilities.html',
+    controller: 'raceController'
+  }).
+   otherwise({
     redirectTo: '/login'
   });
 }]);
