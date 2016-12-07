@@ -75,9 +75,13 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
 
   var character = null;
   $scope.disableButtons = function() {
-    return $window.sessionStorage.character !== undefined;
+    return $window.sessionStorage.character != undefined;
   };
+<<<<<<< HEAD
   if($window.sessionStorage.character !== undefined) {
+=======
+  if($scope.disableButtons()) {
+>>>>>>> f2ab68e591e104a6c6d6d48c019064d9b50190b1
     console.log($window.sessionStorage.character);
     character = JSON.parse($window.sessionStorage.character);
     $scope.idx = 0;
@@ -106,7 +110,7 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
     $scope.saveData = function() {
       character.race = JSON.parse($window.sessionStorage.race);
       dnd_database.put(character._id, character).success(function(data) {
-        $window.sessionStorage.character = undefined;
+        $window.sessionStorage.removeItem('character');
       })
     }
 
@@ -141,12 +145,12 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
       var selectedClass = JSON.stringify(selectedClass);
       $window.sessionStorage.class = selectedClass;
       $scope.idx = index;
-    }
+    };
 
     $scope.saveData = function() {
       character.class=  JSON.parse($window.sessionStorage.class);
       dnd_database.put(character._id, character).success(function(data) {
-        $window.sessionStorage.character = undefined;
+        $window.sessionStorage.removeItem('character');
       })
     }
 }]);
@@ -213,7 +217,7 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
   $scope.saveData = function () {
     character.abilities = JSON.parse($window.sessionStorage.abilities);
     dnd_database.put(character._id, character).success(function(data) {
-      $window.sessionStorage.character = undefined;
+      $window.sessionStorage.removeItem('character');
     })
   };
 
@@ -261,7 +265,7 @@ mp4Controllers.controller('inventoryController', ['$scope', '$http', 'dnd_databa
   $scope.saveData = function () {
     character.inventory = JSON.parse($window.sessionStorage.inventory);
     dnd_database.put(character._id, character).success(function(data) {
-      $window.sessionStorage.character = undefined;
+      $window.sessionStorage.removeItem('character');
     })
   };
 }]);
@@ -309,7 +313,7 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
   $scope.saveData = function() {
     character.feats = JSON.parse($window.sessionStorage.feats);
     dnd_database.put(character._id, character).success(function(data) {
-      $window.sessionStorage.character = undefined;
+      $window.sessionStorage.removeItem('character');
     })
   }
 }]);
@@ -353,7 +357,7 @@ mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database',
       character.name = $scope.name;
       character.pictureURL = $scope.pictureURL;
       dnd_database.put(character._id, character).success(function(data) {
-          $window.sessionStorage.character = undefined;
+        $window.sessionStorage.removeItem('character');
       });
     }
 
