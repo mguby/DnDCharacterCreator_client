@@ -4,7 +4,6 @@ var stringToJson = function(str) {
   return eval("(" + str + ")");
 };
 
-
 mp4Controllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
@@ -211,7 +210,15 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
 
 mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
-
+  var character = null;
+  $scope.disableButtons = function() {
+    return $window.sessionStorage.character !== undefined;
+  };
+  if($scope.disableButtons()) {
+    character = JSON.parse($window.sessionStorage.character);
+      $scope.name =  character.name;
+      $scope.pictureURL = character.pictureURL;
+  }
   var searchParam = '/characters';
 
     $scope.sendData = function() { 
@@ -234,6 +241,14 @@ mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database',
           console.log(err);
         });
       
+    };
+
+    $scope.saveData = function() {
+      character.name = $scope.name;
+      character.pictureURL = $scope.pictureURL;
+      dnd_database.put(character._id, character).success(function(data) {
+          $window.sessionStorage.character = undefined;
+      });
     }
 
 }]);

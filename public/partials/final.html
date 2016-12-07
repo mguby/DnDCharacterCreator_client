@@ -10,7 +10,8 @@
 		    <label>Character Image URL</label>
 		    <input type="text" ng-model="pictureURL">
 		  </div>
-		  <a href="#/dashboard/{{userName}}" class="button" ng-click="sendData()">Submit</a>
+		  <a href="#/dashboard/{{userName}}" class="button" ng-click="sendData()" ng-hide="disableButtons()">Submit</a>
+			<a href="#/dashboard/{{userName}}/{{characterID}}" class="button" ng-click="saveData()" ng-hide="!disableButtons()">Save</a>
 		</form>
     </div>
 </div>
