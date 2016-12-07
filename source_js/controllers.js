@@ -77,11 +77,7 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
   $scope.disableButtons = function() {
     return $window.sessionStorage.character != undefined;
   };
-<<<<<<< HEAD
-  if($window.sessionStorage.character !== undefined) {
-=======
   if($scope.disableButtons()) {
->>>>>>> f2ab68e591e104a6c6d6d48c019064d9b50190b1
     console.log($window.sessionStorage.character);
     character = JSON.parse($window.sessionStorage.character);
     $scope.idx = 0;
