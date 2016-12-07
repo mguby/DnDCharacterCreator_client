@@ -44,7 +44,7 @@ mp4Controllers.controller('registerController', ['$scope' , '$window' , function
 mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http,  dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
-    $scope.idx = -1;  //dont show character for now
+    $scope.idx = 0;  //dont show character for now
     var searchParam = '/characters';
 
     dnd_database.get(searchParam).success(function (data) {;  
@@ -194,8 +194,17 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
       console.log("failure");
     });
     
-    //select class
-    $scope.selectFeat = function(index) {  
+
+    $scope.selectFeat = function(index) { 
+      $scope.featArray.push($scope.feats[index]);
+      var featArray = JSON.stringify($scope.featArray);
+      $window.sessionStorage.feats = featArray;
+    }
+
+    $scope.removeFeat = function(index) { 
+      $scope.featArray.splice(index, 1);
+      var featArray = JSON.stringify($scope.featArray);
+      $window.sessionStorage.feats = featArray;
     }
 }]);
 
@@ -203,7 +212,6 @@ mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database',
   $scope.userName = $routeParams.userName;
 
   var searchParam = '/characters';
-  console.log($window.sessionStorage.race);
 
     $scope.sendData = function() { 
           var newCharacter = {
@@ -214,8 +222,8 @@ mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database',
             class: JSON.parse($window.sessionStorage.class),
             race: JSON.parse($window.sessionStorage.race),
             abilities: JSON.parse($window.sessionStorage.abilities),
-            feats: [{                  "name": "acrobatic",         "description": "You are skilled at leaping, jumping, and flying.",         "benefit": "You get a +2 bonus on all Acrobatics and Fly skill checks. If you have 10 or more ranks in one of these skills, the bonus increases to +4 for that skill."     },     {        "name": "Dragonheart",         "description": "You are skilled at leaping, jumping, and flying.",         "benefit": "You gain a +1 bonus on all saving throws against auras, breath weapons, spell-like abilities, spells, supernatural abilities, and other special attacks of creatures with the dragon type."     }],
-            inventory: ["fewf", "feeee"],
+            feats: JSON.parse($window.sessionStorage.feats),
+            inventory: JSON.parse($window.sessionStorage.inventory),
         }; 
         console.log(newCharacter)
         dnd_database.post(newCharacter).success(function (data) {;           
@@ -226,5 +234,21 @@ mp4Controllers.controller('finalController', ['$scope', '$http', 'dnd_database',
         });
       
     }
+
+}]);
+
+mp4Controllers.controller('characterController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+  console.log($routeParams.characterID);
+
+    var searchParam = '/characters/' + $routeParams.characterID;
+
+    dnd_database.get(searchParam).success(function (data) {;  
+      console.log(data.data);         
+      $scope.character = data.data
+    })
+    .error(function (data) {
+      console.log("failure");
+    });
 
 }]);

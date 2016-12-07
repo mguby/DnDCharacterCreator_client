@@ -36,26 +36,6 @@
            	<p>Race: {{characters[idx].race.name}}</p>
            	<p>Class: {{characters[idx].class.name}}</p>
            	<p>Level: {{characters[idx].level}}</p>
-           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p>
-           	<div>
-           		<b>Feats:</b> 
-	           	<div ng-repeat="feat in characters[idx].feats">
-	           	<p>Name: {{feat.name}}</p>
-	           	<p>Description: {{feat.description}} </p>
-	           	<p>Benefit: {{feat.benefit}} </p>
-
-	           	</div>
-           	</div>
-           	<div>
-           		<b>Abilities:</b> 
-	           	<div ng-repeat="ability in characters[idx].feats">
-	           	<p>Name: {{feat.name}}</p>
-	           	<p>Description: {{feat.description}} </p>
-	           	<p>Benefit: {{feat.benefit}} </p>
-
-	           	</div>
-           	</div>
-
-          </div>
+           	<a href="#/dashboard/{{userName}}/{{characters[idx]._id}}" class="button">Edit</a>
       </div>
 

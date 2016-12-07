@@ -1,0 +1,53 @@
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+          	<form method="get" action="http://localhost:8080/api/logout">
+      			  <button type="submit" class="button">Logout</button>
+      		</form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+	  <div class="row">
+          <div class="small-12 columns">
+            <p> Your Character!</p>
+
+            <img src="{{character.pictureURL}}">
+           	<p>Name: {{character.name}}</p>
+           	<p>Race: {{character.race.name}}</p>
+           	<p>Class: {{character.class.name}}</p>
+           	<p>Level: {{character.level}}</p>
+           	<p>Inventory: <span ng-repeat="item in characters[idx].inventory">{{item}}, </span></p>
+           	<div>
+           		<b>Feats:</b> 
+	           	<div ng-repeat="feat in character.feats">
+	           	<p>Name: {{feat.name}}</p>
+	           	<p>Description: {{feat.description}} </p>
+	           	<p>Benefit: {{feat.benefit}} </p>
+
+	           	</div>
+           	</div>
+           	<div>
+           		<b>Abilities:</b> 
+	           	<p>Strength: {{character.abilities.str}}</p>
+	           	<p>Dexterity: {{character.abilities.dex}}</p>
+	           	<p>Intelligence: {{character.abilities.int}}</p>
+	           	<p>Wisdom: {{character.abilities.wis}}</p>
+	           	<p>Constitution: {{character.abilities.con}}</p>
+	           	<p>Charisma: {{character.abilities.cha}}</p>
+
+	           	</div>
+           	</div>
+          </div>
+      </div>
