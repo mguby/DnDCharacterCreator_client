@@ -118,11 +118,26 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
   $scope.randomizeStats = function() {
     $scope.abilities.forEach(function(stat) {
       $scope.randomize(stat);
-    })
+    });
+    $scope.saveJSON();
   };
 
   $scope.incrementStat = function (stat, val) {
     $scope.abilities[$scope.indexes[stat]].val += val;
-  }
+    $scope.saveJSON();
+  };
+
+  $scope.saveJSON = function() {
+    var abilities = {
+      str: $scope.abilities[0].val,
+      dex: $scope.abilities[1].val,
+      con: $scope.abilities[2].val,
+      int: $scope.abilities[3].val,
+      wis: $scope.abilities[4].val,
+      cha: $scope.abilities[5].val
+    };
+    $window.sessionStorage.abilities = JSON.stringify(abilities);
+    console.log($window.sessionStorage.abilities);
+  };
 
 }]);
