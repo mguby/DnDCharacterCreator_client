@@ -236,6 +236,7 @@ mp4Controllers.controller('inventoryController', ['$scope', '$http', 'dnd_databa
     }
   } else {
     $scope.items = [{ name: "" }];
+    $window.sessionStorage.inventory = JSON.stringify([]);
   }
 
   $scope.saveItems = function() {
