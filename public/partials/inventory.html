@@ -1,0 +1,21 @@
+<div>
+  <div class="row">
+    <h2 class="page-header">Inventory</h2>
+  </div>
+  <div class="row" ng-repeat="item in items">
+    <form>
+      <input ng-model="item.name">
+      <a class="button" ng-click="deleteItem($index)">delete</a>
+    </form>
+  </div>
+  <div class="row">
+    <a ng-click="addItem()" class="button">Add item</a>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="#/dashboard/{{userName}}/feats" class="button">Prev</a>
+      <a href="#/dashboard/{{userName}}/final" class="button">Next</a>
+    </div>
+  </div>
+</div>

@@ -154,6 +154,31 @@ mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_databa
   $scope.saveJSON();
 }]);
 
+mp4Controllers.controller('inventoryController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+  $scope.items = [{ name: "" }];
+
+  $scope.saveItems = function() {
+    var json = [];
+    $scope.items.forEach(function(item) {
+      if(item.name.trim().length !== 0) {
+        json.push(item.name);
+      }
+    });
+    $window.sessionStorage.inventory = JSON.stringify(json);
+  };
+
+  $scope.addItem = function() {
+    $scope.items.push({ name: "" });
+    $scope.saveItems();
+  };
+
+  $scope.deleteItem = function(item) {
+    $scope.items.splice(item, 1);
+    $scope.saveItems();
+  }
+}]);
+
 mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 

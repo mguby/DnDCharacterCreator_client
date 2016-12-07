@@ -38,6 +38,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/abilities.html',
     controller: 'abilitiesController'
   }).
+  when('/dashboard/:userName/inventory', {
+    templateUrl: 'partials/inventory.html',
+    controller: 'inventoryController'
+  }).
   when('/dashboard/:userName/final', {
     templateUrl: 'partials/final.html',
     controller: 'finalController'
