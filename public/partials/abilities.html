@@ -1,41 +1,19 @@
 <div class="row">
-        <div class="small-12 columns">
-                <h2 class="page-header">Abilities</h2>
-		
-		<button onClick="statRoll()" class="button">Roll for Abilities</button>
-		<br>
-		<input id="Str" type="textbox">
-		<button onClick="StrIncrease()"> +</button>
-		<button onClick="StrDecrease()"> -</button>
-		<br>
+	<div class="small-12 columns">
+		<h2 class="page-header">Abilities</h2>
 
-		<input id="Dex" type="textbox"> 
-		<button onClick="DexIncrease()"> +</button>
-                <button onClick="DexDecrease()"> -</button>
-                <br>
-
-		<input id="Con" type="textbox"> 
-		<button onClick="ConIncrease()"> +</button>
-                <button onClick="ConDecrease()"> -</button>
-                <br>
-
-		<input id="Int" type="textbox"> 
-		<button onClick="IntIncrease()"> +</button>
-                <button onClick="IntDecrease()"> -</button>
-                <br>
-
-		<input id="Wis" type="textbox"> 
-		<button onClick="WisIncrease()"> +</button>
-                <button onClick="WisDecrease()"> -</button>
-                <br>
-
-		<input id="Cha" type="textbox"> 
-		<button onClick="ChaIncrease()"> +</button>
-                <button onClick="ChaDecrease()"> -</button>
-                <br>
-
-                
-        </div>
+		<button ng-click="randomizeStats()" class="button">Roll for Abilities</button>
+		<div ng-repeat="ability in abilities">
+			<h3>{{ability.name}}</h3>
+      <form>
+				<input ng-model="ability.val">
+			</form>
+			<button ng-click="incrementStat(ability.name, 1)"> +</button>
+			<button ng-click="incrementStat(ability.name, -1)"> -</button>
+		</div>
+		<a href="#/dashboard/{{userName}}/class" class="button">Prev</a>
+		<a href="#/dashboard/{{userName}}/feats" class="button">Next</a>
+	</div>
 </div>
 
 

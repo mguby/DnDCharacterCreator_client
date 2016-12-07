@@ -97,3 +97,32 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
       $scope.idx = index;
     }
 }]);
+
+mp4Controllers.controller('abilitiesController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+  $scope.indexes = { str: 0, dex: 1, con: 2, int: 3, wis: 4, cha: 5 };
+
+  $scope.abilities = [
+    { name: "str", val: 0 },
+    { name: "dex", val: 0 },
+    { name: "con", val: 0 },
+    { name: "int", val: 0 },
+    { name: "wis", val: 0 },
+    { name: "cha", val: 0 }
+  ];
+
+  $scope.randomize = function(stat) {
+    stat.val = (Math.floor((Math.random()*33)+3));
+  };
+
+  $scope.randomizeStats = function() {
+    $scope.abilities.forEach(function(stat) {
+      $scope.randomize(stat);
+    })
+  };
+
+  $scope.incrementStat = function (stat, val) {
+    $scope.abilities[$scope.indexes[stat]].val += val;
+  }
+
+}]);
