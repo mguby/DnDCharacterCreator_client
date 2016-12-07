@@ -1,6 +1,6 @@
 <div class="row">
-	<div class="small-12 columns">
-		<h2 class="page-header">Account Login</h2>
+	<div class="small-6 small-centered columns">
+		<h2 class="page-header text_center">Dungeons and Dragons Character Creator</h2>
 		<form method="post" action="http://localhost:8080/api/login">
 		  <div class="form-group">
 		    <label>Username</label>
@@ -10,9 +10,12 @@
 		    <label>Password</label>
 		    <input type="password" ng-model="password"  name="password" placeholder="Password">
 		  </div>
-		  <button type="submit" class="button">Submit</button>
+
+		<div class="text_center">
+		  <button type="submit" class="button">Login</button>
 		  	<a class="button" href="#/register">Register</a>
-        	<a class="button" href="#/settings">Settings</a> 
+        	<a class="button" href="#/settings">Settings</a>
+        </div> 
 		</form>
 	</div>
 </div>

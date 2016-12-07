@@ -1,21 +1,47 @@
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
 
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+            <form method="get" action="http://localhost:8080/api/logout">
+              <div style="padding:10px;">
+                <a type="submit" >Logout</a>
+              </div>
+          </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  
 <div class="row">
-    <div class="small-12 columns">
-    <h1>Class</h1>
-    <img src="{{classes[idx].image}}">
-    <h1>{{classes[idx].name}}</h1>
+    <div class="small-8 small-centered columns">
+    <div class="text_center">
+      <h1>Class</h1>
+      <img src="{{classes[idx].image}}">
+      <h1>{{classes[idx].name}}</h1>
+    </div>
+
     <p>{{classes[idx].description}}</p>
     </div>
 </div>
 
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered columns text_center">
       <button ng-repeat="(i,class) in classes" class="button small" ng-click="selectClass(i)">{{class.name}}</button>
     </div>
 </div>
 
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered columns text_center">
+      <hr>
       <a href="#/dashboard/{{userName}}/race" class="button" ng-hide="disableButtons()">Prev</a>
       <a href="#/dashboard/{{userName}}/abilities" class="button" ng-hide="disableButtons()">Next</a>
       <a href="#/dashboard/{{userName}}" class="button" ng-hide="!disableButtons()" ng-click="saveData()">Save</a>

@@ -1,19 +1,46 @@
-<div>
-  <div class="row">
-    <h2 class="page-header">Inventory</h2>
-  </div>
-  <div class="row" ng-repeat="item in items">
-    <form>
-      <input ng-model="item.name">
-      <a class="button" ng-click="deleteItem($index)">delete</a>
-    </form>
-  </div>
-  <div class="row">
-    <a ng-click="addItem()" class="button">Add item</a>
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+            <form method="get" action="http://localhost:8080/api/logout">
+              <div style="padding:10px;">
+                <a type="submit" >Logout</a>
+              </div>
+          </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 
+<div class="row">
+    <div class="small-8 small-centered text_center columns">
+      <div class="row">
+        <h2 class="page-header">Inventory</h2>
+      </div>
+      <div class="row" ng-repeat="item in items">
+        <form>
+          <input ng-model="item.name">
+          <a class="button tiny" ng-click="deleteItem($index)">delete</a>
+        </form>
+      </div>
+      <div class="row">
+        <a ng-click="addItem()" class="button small">Add item</a>
+      </div>
+    </div>
+</div>
+
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered columns text_center">
+      <hr>
       <a href="#/dashboard/{{userName}}/feats" class="button" ng-hide="disableButtons()">Prev</a>
       <a href="#/dashboard/{{userName}}/final" class="button" ng-hide="disableButtons()">Next</a>
       <a href="#/dashboard/{{userName}}" class="button" ng-hide="!disableButtons()" ng-click="saveData()">Save</a>

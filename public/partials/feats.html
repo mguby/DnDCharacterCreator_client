@@ -1,28 +1,52 @@
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+            <form method="get" action="http://localhost:8080/api/logout">
+              <div style="padding:10px;">
+                <a type="submit" >Logout</a>
+              </div>
+          </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered text_center columns">
     <h1>Feats</h1>
     <img src="{{races[idx].image}}">
-    <h1>{{feats[idx].name}}</h1>
+    <h3>{{feats[idx].name}}</h3>
     <p>Description: {{feats[idx].description}}</p>
     <p>Benefit: {{feats[idx].benefit}}</p>
     </div>
 </div>
 
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered text_center columns">
       <button ng-repeat="(i,feat) in feats" class="button small" ng-click="selectFeat(i)">{{feat.name}}</button>
     </div>
 </div>
 
 <div class="row">
-    <div class="small-12 columns">
-      Youre Selected Feats:
+    <div class="small-8 small-centered text_center columns">
+      <h3>Youre Selected Feats:</h3>
       <button ng-repeat="(i,feat) in featArray" class="button small" ng-click="removeFeat()">{{feat.name}}</button>
     </div>
 </div>
 
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered text_center columns">
+      <hr>
       <a href="#/dashboard/{{userName}}/abilities" class="button" ng-hide="disableButtons()">Prev</a>
       <a href="#/dashboard/{{userName}}/inventory" class="button" ng-hide="disableButtons()">Next</a>
       <a href="#/dashboard/{{userName}}" class="button" ng-hide="!disableButtons()" ng-click="saveData()">Save</a>

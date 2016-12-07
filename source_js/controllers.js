@@ -44,11 +44,11 @@ mp4Controllers.controller('registerController', ['$scope' , '$window' , function
 mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http,  dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
-    $scope.idx = 0;  //dont show character for now
+    $scope.idx = -1;  //dont show character for now
     var searchParam = '/characters';
 
     dnd_database.get(searchParam).success(function (data) {;  
-      console.log(data.data);         
+      //console.log(data.data);         
       $scope.characters = data.data
     })
     .error(function (data) {
@@ -56,8 +56,16 @@ mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_databa
     });
 
     //select character
-    $scope.selectCharacter = function(index) {  
-      $scope.idx = index;
+    $scope.selectCharacter = function(id) {  
+      var searchParam = '/characters/' + id;
+
+      dnd_database.get(searchParam).success(function (data) {;  
+        //console.log(data.data);         
+        $scope.selectedCharacter = data.data
+      })
+      .error(function (data) {
+        console.log("failure");
+      });
     }
 
 }]);
@@ -69,7 +77,8 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
   $scope.disableButtons = function() {
     return $window.sessionStorage.character !== undefined;
   };
-  if($scope.disableButtons()) {
+  if($window.sessionStorage.character !== undefined) {
+    console.log($window.sessionStorage.character);
     character = JSON.parse($window.sessionStorage.character);
     $scope.idx = 0;
   }
@@ -287,7 +296,9 @@ mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database',
       $scope.featArray.push($scope.feats[index]);
       var featArray = JSON.stringify($scope.featArray);
       $window.sessionStorage.feats = featArray;
-    };
+      $scope.idx = index;
+    }
+
 
     $scope.removeFeat = function(index) { 
       $scope.featArray.splice(index, 1);

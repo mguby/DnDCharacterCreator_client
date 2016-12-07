@@ -1,1 +1,28 @@
 // Add any custom Sass & CSS here
+.text_center
+{
+  text-align: center;
+}
+
+.gray {
+    background-color: #EDEDED;
+    padding: 20px;
+}
+
+.button {
+	margin:1px;
+}
+
+.short {
+	line-height: 70%;
+}
+
+
+.float_right {
+	float: right;
+}
+
+img {
+    max-width: auto;
+    max-height: 500px;
+}

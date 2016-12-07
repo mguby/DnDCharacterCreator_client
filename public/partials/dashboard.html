@@ -2,7 +2,7 @@
     <nav class="top-bar larger" data-sticky style="width:100%">
       <div class="top-bar-left">
         <ul class="dropdown menu" >
-          <li><a>{{userName}}</a></li>
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
           <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
         </ul>
       </div>
@@ -11,7 +11,9 @@
       <ul class="vertical medium-horizontal menu clear">
           <li>
           	<form method="get" action="http://localhost:8080/api/logout">
-      			  <button type="submit" class="button">Logout</button>
+              <div style="padding:10px;">
+        			  <a type="submit" >Logout</a>
+              </div>
       		</form>
           </li>
         </ul>
@@ -20,22 +22,26 @@
   </div>
 
 
-	  <div class="row">
-          <div class="small-12 columns">
-          Your Characters:
-          <button ng-repeat="(i,character) in characters" class="button small" ng-click="selectCharacter(i)">{{character.name}}</button>
+	  <div class="row" style="padding-top: 10px">
+          <div class="small-12 text_center columns">
+          <button ng-repeat="(i,character) in characters | filter : userName" class="button small" ng-click="selectCharacter(character._id)">{{character.name}}</button>
           </div>
       </div>
 
-	  <div class="row">
-          <div class="small-12 columns">
-            <p> Your Character!</p>
+    <div class="row">
+          <div class="small-6 small-centered text_center columns">
+            <img height="20" src="{{selectedCharacter.pictureURL}}">
+          </div>
+    </div>
 
-            <img src="{{characters[idx].pictureURL}}">
-           	<p>Name: {{characters[idx].name}}</p>
-           	<p>Race: {{characters[idx].race.name}}</p>
-           	<p>Class: {{characters[idx].class.name}}</p>
-           	<p>Level: {{characters[idx].level}}</p>
-           	<a href="#/dashboard/{{userName}}/{{characters[idx]._id}}" class="button">Edit</a>
-      </div>
+
+	  <div class="row" style="padding-top:10px">
+          <div class="small-6 small-centered columns gray short">
+            <a href="#/dashboard/{{userName}}/{{selectedCharacter._id}}" class="button small" style="float:right">View</a>
+           	<p><b>Name:</b> {{selectedCharacter.name}}</p>
+           	<p><b>Race:</b> {{selectedCharacter.race.name}}</p>
+           	<p><b>Class:</b> {{selectedCharacter.class.name}}</p>
+           	<p><b>Level:</b> {{selectedCharacter.level}}</p>
+          </div>
+    </div>
 

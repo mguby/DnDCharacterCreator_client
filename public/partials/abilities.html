@@ -1,16 +1,40 @@
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+          	<form method="get" action="http://localhost:8080/api/logout">
+              <div style="padding:10px;">
+        			  <a type="submit" >Logout</a>
+              </div>
+      		</form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
 <div class="row">
 
-	<div class="small-12 columns">
+	<div class="small-4 small-centered text_center columns">
 		<h2 class="page-header">Abilities</h2>
 
 		<button ng-click="randomizeStats()" class="button">Roll for Abilities</button>
 		<div ng-repeat="ability in abilities">
-			<h3>{{ability.name}}</h3>
-      <form>
+			<span>{{ability.name}}</span>
+      		<form>
 				<input ng-model="ability.val">
+			<a class="button tiny" ng-click="incrementStat(ability.name, 1)"> +</a>
+			<a class="button tiny" ng-click="incrementStat(ability.name, -1)"> -</a>
 			</form>
-			<button ng-click="incrementStat(ability.name, 1)"> +</button>
-			<button ng-click="incrementStat(ability.name, -1)"> -</button>
+
 		</div>
 	</div>
 
@@ -18,7 +42,8 @@
 
 
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-8 small-centered text_center columns">
+    	<hr>
 			<a href="#/dashboard/{{userName}}/class" class="button" ng-hide="disableButtons()">Prev</a>
 			<a href="#/dashboard/{{userName}}/feats" class="button" ng-hide="disableButtons()">Next</a>
 			<a href="#/dashboard/{{userName}}" class="button" ng-hide="!disableButtons()" ng-click="saveData()">Save</a>

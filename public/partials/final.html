@@ -1,5 +1,28 @@
+  <div data-sticky-container>
+    <nav class="top-bar larger" data-sticky style="width:100%">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" >
+          <li><a href="#/dashboard/{{userName}}">{{userName}}</a></li>
+          <li ><a href="#/dashboard/{{userName}}/race">Create Character</a></li>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">        
+      <ul class="vertical medium-horizontal menu clear">
+          <li>
+          	<form method="get" action="http://localhost:8080/api/logout">
+              <div style="padding:10px;">
+        			  <a type="submit" >Logout</a>
+              </div>
+      		</form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-6 small-centered columns">
     	<h1>Final Page</h1>
 		<form>
 		  <div>
@@ -10,8 +33,17 @@
 		    <label>Character Image URL</label>
 		    <input type="text" ng-model="pictureURL">
 		  </div>
-		  <a href="#/dashboard/{{userName}}" class="button" ng-click="sendData()" ng-hide="disableButtons()">Submit</a>
+		  <div class="text_center">
+ 			<a href="#/dashboard/{{userName}}" class="button" ng-click="sendData()" ng-hide="disableButtons()">Submit</a>
 			<a href="#/dashboard/{{userName}}/{{characterID}}" class="button" ng-click="saveData()" ng-hide="!disableButtons()">Save</a>
+		  </div>
 		</form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-8 small-centered text_center columns">
+    	<hr>
+      <a href="#/dashboard/{{userName}}/inventory" class="button small">Prev</a>
     </div>
 </div>

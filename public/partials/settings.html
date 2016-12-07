@@ -1,19 +1,15 @@
-<div class="list">
 
-   <a class="button" href="#/login">Login</a>
-                <a class="button" href="#/register">Register</a>
-	<form>
 	  <div class="row">
-          <div class="small-12 columns">
+          <div class="small-6 small-centered columns">
+            <h2 class="page-header text_center">Settings</h2>
             <input ng-model="url" type="text" placeholder="URL">
           </div>
       </div>
 
     <div class="text-center">
-      <button ng-click="setUrl()" class="button tiny info">Set URL</button>
+      <a href="#/login" ng-click="setUrl()" class="button tiny info">Set URL</a>
     </div>
 
     {{displayText}}
 
-  </form>
-</div>
+ 
