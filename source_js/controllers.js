@@ -75,6 +75,8 @@ mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', 
     //select class
     $scope.selectRace = function(index) {  
       $scope.idx = index;
+      $window.sessionStorage.race = "test";
+      console.log($window.sessionStorage.race);
     }
 }]);
 
@@ -94,6 +96,26 @@ mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database',
     
     //select class
     $scope.selectClass = function(index) {  
+      $scope.idx = index;
+    }
+}]);
+
+mp4Controllers.controller('featsController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+
+
+    $scope.idx = 0;
+    var searchParam = '/constants/feats';
+    
+    dnd_database.get(searchParam).success(function (data) {;           
+      $scope.feats = data.data
+    })
+    .error(function (data) {
+      console.log("failure");
+    });
+    
+    //select class
+    $scope.selectFeat = function(index) {  
       $scope.idx = index;
     }
 }]);
