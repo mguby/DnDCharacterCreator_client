@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="small-12 columns">
+    <h1>Race</h1>
+    <img src="{{races[idx].image}}">
+    <h1>{{races[idx].name}}</h1>
+    <p>{{races[idx].description}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns">
+      <button ng-repeat="(i,race) in races" class="button small" ng-click="selectRace(i)">{{race.name}}</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns">
+      <a href="#/dashboard/{{userName}}" class="button">Prev</a>
+      <a href="#/dashboard/{{userName}}/class" class="button">Next</a>
+    </div>
+</div>

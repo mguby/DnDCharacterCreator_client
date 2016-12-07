@@ -26,6 +26,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/dashboard.html',
     controller: 'dashboardController'
   }).
+  when('/dashboard/:userName/race', {
+    templateUrl: 'partials/race.html',
+    controller: 'raceController'
+  }).  
   when('/dashboard/:userName/class', {
     templateUrl: 'partials/class.html',
     controller: 'classController'

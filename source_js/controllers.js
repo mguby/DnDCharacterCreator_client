@@ -42,15 +42,34 @@ mp4Controllers.controller('dashboardController', ['$scope', '$http', 'dnd_databa
 
 }]);
 
+mp4Controllers.controller('raceController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
+  $scope.userName = $routeParams.userName;
+
+
+    $scope.idx = 0; //idx used for class selection
+    var searchParam = '/constants/races';
+    
+    dnd_database.get(searchParam).success(function (data) {;           
+      $scope.races = data.data
+    })
+    .error(function (data) {
+      console.log("failure");
+    });
+    
+    //select class
+    $scope.selectRace = function(index) {  
+      $scope.idx = index;
+    }
+}]);
+
 mp4Controllers.controller('classController', ['$scope', '$http', 'dnd_database', '$window' , '$routeParams', function($scope, $http, dnd_database, $window, $routeParams) {
   $scope.userName = $routeParams.userName;
 
 
-    $scope.idx = 5; //idx used for class selection
+    $scope.idx = 0; //idx used for class selection
     var searchParam = '/constants/classes';
     
     dnd_database.get(searchParam).success(function (data) {;           
-      console.log(data.data);
       $scope.classes = data.data
     })
     .error(function (data) {
